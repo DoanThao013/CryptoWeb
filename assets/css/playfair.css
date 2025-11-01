@@ -1,0 +1,134 @@
+/* ===========================
+   🎨 PLAYFAIR CIPHER PAGE CSS
+   =========================== */
+
+body {
+    background-color: #f0f2f5;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.cipher-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    background-color: #ffffff;
+    border: 1px solid #d1d1d1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden; 
+}
+
+.cipher-header {
+    background-color: #0d6efd; 
+    color: white;
+    padding: 0.75rem 1.25rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.cipher-header .fa-arrow-left {
+    margin-right: 1rem;
+    font-weight: 900;
+    cursor: pointer;
+}
+
+.cipher-body {
+    padding: 1.5rem;
+}
+
+fieldset {
+    border: 1px solid #ced4da !important;
+    border-radius: 5px;
+    padding: 1rem 1.25rem 1.25rem 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+legend {
+    float: none;
+    width: auto;
+    padding: 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: black;
+}
+
+legend .btn {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+}
+
+.io-textarea {
+    min-height: 180px;
+    font-family: Consolas, 'Courier New', monospace;
+    resize: vertical;
+}
+
+.output-textarea {
+    min-height: 400px;
+    height: 100%;
+}
+
+.output-fieldset {
+    height: calc(100% - 1.5rem);
+    display: flex;
+    flex-direction: column;
+}
+
+.output-fieldset textarea {
+    flex-grow: 1;
+}
+
+.matrix-grid {
+    display: grid;
+    --grid-cols: 5;
+    grid-template-columns: repeat(var(--grid-cols), 1fr);
+    gap: 5px;
+}
+
+.matrix-grid.grid-6x6 {
+    --grid-cols: 6;
+}
+
+.matrix-grid .cell-6x6 {
+    display: none;
+}
+
+.matrix-grid.grid-6x6 .cell-6x6 {
+    display: block;
+}
+
+.matrix-grid input {
+    text-align: center;
+    font-weight: 600;
+    font-family: Consolas, 'Courier New', monospace;
+    padding: 0.5rem 0.25rem;
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: flex-start;
+}
+
+#message-box {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+#message-box.show {
+    opacity: 1;
+}
