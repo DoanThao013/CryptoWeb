@@ -5,32 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RSA Encryption Demo (Pastel Theme)</title>
     
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome (cho biểu tượng mũi tên) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <link rel="stylesheet" href="assets/css/rsa.css">
+
     <style>
-        /* CSS tùy chỉnh để giống với giao diện trong ảnh */
         body {
-            background-color: #C7CEEA; /* Tím pastel */
+            background-color: #C7CEEA; 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         }
 
         .rsa-container {
-            max-width: 1000px; /* Giới hạn chiều rộng */
+            max-width: 1000px; 
             margin: 2rem auto;
             background-color: #ffffff;
             border: 1px solid #d1d1d1;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             border-radius: 8px;
-            overflow: hidden; /* Để bo góc header */
+            overflow: hidden; 
         }
 
         .rsa-header {
-            background-color: #B5EAD7; /* Xanh lá cây/Xanh ngọc pastel */
-            color: black; /* Màu chữ tối hơn để dễ đọc trên nền pastel */
+            background-color: #B5EAD7; 
+            color: black; 
             padding: 1rem 1.5rem;
             font-size: 1.75rem;
             font-weight: 600;
@@ -46,20 +45,19 @@
             padding: 1.5rem;
         }
 
-        /* Tùy chỉnh các nút */
         .btn-generate {
-            background-color: #FFD8F2; /* Cam pastel */
-            color: black; /* Chữ tối để dễ đọc */
+            background-color: #FFD8F2; 
+            color: black; 
             font-weight: 600;
             border: none;
         }
         .btn-generate:hover {
-            background-color: #FFCBE1; /* Màu nhạt hơn khi hover */
+            background-color: #FFCBE1; 
             color: black;
         }
 
         .btn-clear {
-            background-color: #C8CEFF; /* Giữ màu nhạt */
+            background-color: #C8CEFF; 
             border: 1px solid #c7c7c7;
             color: black;
         }
@@ -69,36 +67,36 @@
         }
 
         .btn-encrypt {
-            background-color: #E6CCFF; /* Hồng pastel đậm */
-            color: black; /* Chữ trắng để dễ đọc */
+            background-color: #E6CCFF; 
+            color: black; 
             font-weight: 600;
             border: none;
         }
         .btn-encrypt:hover {
-            background-color: #F4D6FF; /* Màu đậm hơn khi hover */
+            background-color: #F4D6FF; 
             color: black;
         }
         
         .btn-decrypt {
-            background-color: #FFD8F2; /* Hồng pastel nhạt */
-            color: black; /* Chữ tối để dễ đọc */
+            background-color: #FFD8F2; 
+            color: black;
             font-weight: 600;
             border: none;
         }
         .btn-decrypt:hover {
-            background-color: #FFCBE1; /* Màu đậm hơn khi hover */
+            background-color: #FFCBE1; 
             color: black;
         }
 
         .btn-open {
-            background-color: #FFFFB5; /* Hồng pastel đậm */
-            color: #495057; /* Chữ trắng */
+            background-color: #FFFFB5; 
+            color: #495057; 
             font-size: 0.85rem;
             padding: 0.25rem 0.75rem;
             border: none;
         }
         .btn-open:hover {
-            background-color: #F6F4D0; /* Màu đậm hơn khi hover */
+            background-color: #F6F4D0; 
             color: white;
         }
 
@@ -114,13 +112,13 @@
             color: black;
         }
 
-        /* Tùy chỉnh Fieldset và Legend (các ô nhóm) */
+      
         fieldset {
             border: 1px solid #ced4da !important;
             border-radius: 5px;
             padding: 1rem 1.25rem 1.25rem 1.25rem;
             margin-bottom: 1rem;
-            background-color: #FFB7B2; /* Thay đổi: Thêm màu nền cho fieldset */
+            background-color: #FFB7B2; 
         }
 
         legend {
@@ -130,12 +128,10 @@
             font-size: 1rem;
             font-weight: 600;
             color: black;
-            background-color: #FFB7B2; /* Thay đổi: Đồng bộ nền cho legend */
+            background-color: #FFB7B2; 
         }
         
-        /* Nhóm Key Params (P, Q) */
         .key-params-box {
-            /* THAY ĐỔI: Bỏ màu nền để giống trong ảnh (nền trắng) */
             border: 1px solid #ced4da;
             padding: 1.25rem;
             border-radius: 5px;
@@ -146,15 +142,13 @@
             color: black;
         }
         
-        /* Textarea Input/Output */
         .io-textarea {
             min-height: 180px;
-            background-color: #fdfdfd; /* Giữ màu gần trắng để dễ đọc */
+            background-color: #fdfdfd; 
             font-family: Consolas, 'Courier New', monospace;
             resize: vertical;
         }
         
-        /* Căn chỉnh các label P, Q, N, E, D */
         .key-label {
              font-weight: 600;
              display: flex;
@@ -164,7 +158,7 @@
              color: black;
         }
         
-        /* Custom message box */
+       
         #message-box {
             position: fixed;
             bottom: 20px;
@@ -177,7 +171,7 @@
             z-index: 1000;
             opacity: 0;
             transition: opacity 0.5s ease;
-            pointer-events: none; /* Không thể nhấp vào */
+            pointer-events: none; 
         }
         
         #message-box.show {
@@ -189,27 +183,21 @@
 <body>
 
     <div class="rsa-container">
-        <!-- Header -->
         <div class="rsa-header">
             <i class="fas fa-arrow-left" id="back-button"></i>
             
             RSA Encryption
         </div>
 
-        <!-- Body -->
         <div class="rsa-body">
             <div class="row g-4">
 
-                <!-- ===== CỘT BÊN TRÁI ===== -->
-                <!-- THAY ĐỔI: col-lg-5 thành col-lg-6 -->
                 <div class="col-lg-6">
-                    <!-- Nút Generate Key / Clear -->
                     <div class="d-grid gap-3 d-md-flex mb-3">
                         <button class="btn btn-generate flex-grow-1" id="btn-generate">GENERATE KEY</button>
                         <button class="btn btn-clear flex-grow-1" id="btn-clear">CLEAR</button>
                     </div>
 
-                    <!-- Box Nhập P, Q -->
                     <div class="key-params-box mb-3">
                         <div class="row g-2 align-items-center mb-2">
                             <div class="col-2">
@@ -263,7 +251,6 @@
                         </div>
                     </fieldset>
 
-                    <!-- Box Private Key -->
                     <fieldset>
                         <legend>Private Key</legend>
                         <div class="row g-2 align-items-center">
@@ -298,139 +285,21 @@
                         </legend>
                         <textarea id="output-text" class="form-control io-textarea" readonly placeholder="Kết quả mã hóa/giải mã sẽ xuất hiện tại đây..."></textarea>
                     </fieldset> 
-                    <!-- Nút Encrypt / Decrypt -->
+
                     <div class="d-flex gap-3 justify-content-end">
                         <button class="btn btn-encrypt px-4" id="btn-encrypt">Encrypt</button>
                         <button class="btn btn-decrypt px-4" id="btn-decrypt">Decrypt</button>
                     </div>
                 </div>
 
-            </div> <!-- Hết .row -->
-        </div> <!-- Hết .rsa-body -->
-    </div> <!-- Hết .rsa-container -->
+            </div> 
+        </div> 
+    </div> 
 
-    <!-- Hộp thông báo tùy chỉnh (thay cho alert) -->
     <div id="message-box"></div>
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- 
-      LƯU Ý: Tệp này vẫn yêu cầu tệp `rsa.js` từ mã gốc của bạn để hoạt động.
-      Hãy đảm bảo bạn có tệp `rsa.js` trong cùng thư mục.
-    -->
-    <!-- <script src="rsa.js" defer></script> -->
-    
-    <!-- Tạm thời thêm logic JS cơ bản để demo (bạn nên dùng tệp rsa.js đầy đủ) -->
-    <script>
-        // Logic JS Demo (để các nút không bị vô dụng)
-        // Bạn nên thay thế bằng logic đầy đủ từ tệp `rsa.js` của mình.
-        
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            // Hàm hiển thị thông báo tùy chỉnh
-            const showMessage = (msg) => {
-                const msgBox = document.getElementById('message-box');
-                if (!msgBox) return;
-                
-                msgBox.textContent = msg;
-                msgBox.classList.add('show');
-                
-                // Ẩn sau 3 giây
-                setTimeout(() => {
-                    msgBox.classList.remove('show');
-                }, 3000);
-            };
-
-            // Gán sự kiện cho các nút
-            const btnGenerate = document.getElementById('btn-generate');
-            const btnClear = document.getElementById('btn-clear');
-            const btnEncrypt = document.getElementById('btn-encrypt');
-            const btnDecrypt = document.getElementById('btn-decrypt');
-            const btnOpen = document.getElementById('btn-open');
-            const btnSwap = document.getElementById('btn-swap');
-            const btnExport = document.getElementById('btn-export');
-            const backButton = document.getElementById('back-button');
-
-            // Các ô input/output
-            const pVal = document.getElementById('p-val');
-            const qVal = document.getElementById('q-val');
-            const phinVal = document.getElementById('phin-val');
-            const publicN = document.getElementById('public-n');
-            const publicE = document.getElementById('public-e');
-            const privateD = document.getElementById('private-d');
-            const inputText = document.getElementById('input-text');
-            const outputText = document.getElementById('output-text');
-
-            if (btnGenerate) {
-                btnGenerate.onclick = () => {
-                    // Logic tạo key mẫu (ví dụ)
-                    pVal.value = '61';
-                    qVal.value = '53';
-                    phinVal.value = '3160'; // (61-1)*(53-1)
-                    publicN.value = '3233'; // 61*53
-                    publicE.value = '17';
-                    privateD.value = '2753';
-                    showMessage('Khóa RSA mẫu đã được tạo!');
-                };
-            }
-
-            if (btnClear) {
-                btnClear.onclick = () => {
-                    pVal.value = '';
-                    qVal.value = '';
-                    phinVal.value = '';
-                    publicN.value = '';
-                    publicE.value = '';
-                    privateD.value = '';
-                    inputText.value = '';
-                    outputText.value = '';
-                    showMessage('Đã xóa tất cả các trường.');
-                };
-            }
-
-            if (btnEncrypt) {
-                btnEncrypt.onclick = () => {
-                    if (inputText.value) {
-                        outputText.value = `(Đã mã hóa: ${inputText.value})`;
-                        showMessage('Đã mã hóa văn bản!');
-                    } else {
-                        showMessage('Vui lòng nhập văn bản để mã hóa.');
-                    }
-                };
-            }
-
-            if (btnDecrypt) {
-                btnDecrypt.onclick = () => {
-                    if (inputText.value) {
-                        outputText.value = `(Đã giải mã: ${inputText.value})`;
-                        showMessage('Đã giải mã văn bản!');
-                    } else {
-                        showMessage('Vui lòng nhập văn bản để giải mã.');
-                    }
-                };
-            }
-            
-            if (btnSwap) {
-                btnSwap.onclick = () => {
-                    const temp = inputText.value;
-                    inputText.value = outputText.value;
-                    outputText.value = temp;
-                    showMessage('Đã hoán đổi Input và Output.');
-                };
-            }
-
-            // Các nút khác
-            if (btnOpen) btnOpen.onclick = () => showMessage('Chức năng "Open" chưa được cài đặt.');
-            if (btnExport) btnExport.onclick = () => showMessage('Chức năng "Export" chưa được cài đặt.');
-            // THAY ĐỔI: Thêm sự kiện điều hướng cho nút "Back"
-            if (backButton) backButton.onclick = () => {
-                // Điều hướng về trang index.html
-                window.location.href = 'index.html';
-            };
-
-        });
-    </script>
 
 </body>
 </html>
