@@ -134,8 +134,21 @@ function generateKey() {
             showMessage('Please provide both P and Q values or leave both empty for auto-generation.', true);
             return;
         }
-        P = BigInt(pVal.value.trim());
-        Q = BigInt(qVal.value.trim());
+
+        // Kiểm tra định dạng số nguyên
+        if (!/^\d+$/.test(pVal.value.trim()) || !/^\d+$/.test(qVal.value.trim())) {
+            showMessage('P and Q must be valid integers.', true);
+            return;
+        }
+
+        try {
+            P = BigInt(pVal.value.trim());
+            Q = BigInt(qVal.value.trim());
+        } catch (ex) {
+            showMessage('Invalid input format for P or Q. Please enter valid integers.', true);
+            return;
+        }
+
         if (!checkPrime(P)) {
             showMessage('P must be a prime number.', true);
             return;
@@ -148,7 +161,6 @@ function generateKey() {
             showMessage('P and Q must be different prime numbers.', true);
             return;
         }
-        // Kiểm tra tích số P*Q
         if (P * Q <= 255n) {
             showMessage('P × Q must be greater than 255. Please enter larger primes.', true);
             return;
@@ -164,6 +176,7 @@ function generateKey() {
 
     generateRSAKeys();
 }
+
 
 
 function generateRSAKeys() {
